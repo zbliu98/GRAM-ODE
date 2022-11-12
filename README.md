@@ -1,5 +1,5 @@
-# STGODE
-This is an implementation of [Spatio-temporal Coupled Multi-ODE Neural Networks for Traffic Forecasting]
+# GRAM-ODE
+This is an implementation of [Graph-based Multi-ODE Neural Networks for Spatio-Temporal Traffic Forecasting]
 
 ## Run
 ```
@@ -21,4 +21,4 @@ Please cite our paper if you use the model in your own work:
 
 
 
-# STMODE-GNN
+
