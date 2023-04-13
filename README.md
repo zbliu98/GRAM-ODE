@@ -4,9 +4,11 @@ This is an implementation of [Graph-based Multi-ODE Neural Networks for Spatio-T
 
 ## Overview
 
+In this paper, we propose a novel architecture called Graph-based Multi-ODE Neural Networks **GRAM-ODE** which is designed with multiple connective ODE-GNN modules to learn better representations by capturing different views of complex local and global dynamic spatio-temporal dependencies. We also add some techniques to further improve the communication between different ODE-GNN modules towards the forecasting task. Extensive experiments conducted on six real-world datasets demonstrate the outperformance of GRAM-ODE compared with state-of-the-art baselines as well as the contribution of different GRAM-ODE components to the overall performance.
+
 ![whole model](figure3_v3.png)
 
-In this paper, we propose a novel architecture called Graph-based Multi-ODE Neural Networks GRAM-ODE which is designed with multiple connective ODE-GNN modules to learn better representations by capturing different views of complex local and global dynamic spatio-temporal dependencies. We also add some techniques to further improve the communication between different ODE-GNN modules towards the forecasting task. Extensive experiments conducted on six real-world datasets demonstrate the outperformance of GRAM-ODE compared with state-of-the-art baselines as well as the contribution of different GRAM-ODE components to the overall performance.
+<b>An overview of the multi ODE-GNN block which consists of three ODE modules<b>, i.e., (a) global, (b) local, and (c) edge-based temporal dependencies as well as a new aggregation layer (d). The inputs and outputs of the multi ODE-GNN block are displayed with H and H' blocks on the left and right sides of the diagram. The shared weights among different ODE modules are marked in green, and a constraint to limit the divergence of embeddings is marked in red.
 
 
 ## Run
