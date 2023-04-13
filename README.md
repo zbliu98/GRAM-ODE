@@ -13,7 +13,7 @@ python run_stode.py
 * fastdtw  0.3.4
 
 ## Dataset
-The datasets used in our paper are collected by the Caltrans Performance Measurement System(PeMS). Please refer to [STSGCN (AAAI2020)](https://github.com/Davidham3/STSGCN) for the download url.
+download the data [STSGCN_data.tar.gz](https://pan.baidu.com/s/1ZPIiOM__r1TRlmY4YGlolw) with code: p72z
 
 ## Reference
 Please cite our paper if you use the model in your own work:
