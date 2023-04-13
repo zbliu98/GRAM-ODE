@@ -13,10 +13,21 @@ python run_stode.py
 * fastdtw  0.3.4
 
 ## Dataset
-download the data [STSGCN_data.tar.gz](https://pan.baidu.com/s/1ZPIiOM__r1TRlmY4YGlolw) with code: '''p72z'''
+download the data [STSGCN_data.tar.gz](https://pan.baidu.com/s/1ZPIiOM__r1TRlmY4YGlolw) with code: ```p72z```
 
 ## Reference
 Please cite our paper if you use the model in your own work:
+```
+@article{
+anonymous2022graphbased,
+title={Graph-based Multi-{ODE} Neural Networks for Spatio-Temporal Traffic Forecasting},
+author={Anonymous},
+journal={Submitted to Transactions on Machine Learning Research},
+year={2022},
+url={https://openreview.net/forum?id=Oq5XKRVYpQ},
+note={Under review}
+}
+```
 
 
 
