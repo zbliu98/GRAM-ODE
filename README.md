@@ -8,7 +8,7 @@ In this paper, we propose a novel architecture called Graph-based Multi-ODE Neur
 
 ![whole model](figure3_v3.png)
 
-<b>An overview of the multi ODE-GNN block which consists of three ODE modules<b>, i.e., (a) global, (b) local, and (c) edge-based temporal dependencies as well as a new aggregation layer (d). The inputs and outputs of the multi ODE-GNN block are displayed with H and H' blocks on the left and right sides of the diagram. The shared weights among different ODE modules are marked in green, and a constraint to limit the divergence of embeddings is marked in red.
+<b>An overview of the multi ODE-GNN block which consists of three ODE modules</b>, i.e., (a) global, (b) local, and (c) edge-based temporal dependencies as well as a new aggregation layer (d). The inputs and outputs of the multi ODE-GNN block are displayed with H and H' blocks on the left and right sides of the diagram. The shared weights among different ODE modules are marked in green, and a constraint to limit the divergence of embeddings is marked in red.
 
 
 ## Run
