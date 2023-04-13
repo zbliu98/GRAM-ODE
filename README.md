@@ -13,7 +13,7 @@ python run_stode.py
 * fastdtw  0.3.4
 
 ## Dataset
-download the data [STSGCN_data.tar.gz](https://pan.baidu.com/s/1ZPIiOM__r1TRlmY4YGlolw) with code: p72z
+download the data [STSGCN_data.tar.gz](https://pan.baidu.com/s/1ZPIiOM__r1TRlmY4YGlolw) with code: '''p72z'''
 
 ## Reference
 Please cite our paper if you use the model in your own work:
