@@ -29,7 +29,7 @@ PEMS-BAY and METR-LA can be downloaded here [this repo](https://github.com/chnsh
 Please cite our paper if you use the model in your own work:
 ```
 @article{
-anonymous2022graphbased,
+liugramode2023,
 title={Graph-based Multi-{ODE} Neural Networks for Spatio-Temporal Traffic Forecasting},
 author={Anonymous},
 journal={Submitted to Transactions on Machine Learning Research},
