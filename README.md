@@ -18,7 +18,9 @@ In this paper, we propose a novel architecture called Graph-based Multi-ODE Neur
 * fastdtw  0.3.4
 
 ## Dataset
-download the data [STSGCN_data.tar.gz](https://pan.baidu.com/s/1ZPIiOM__r1TRlmY4YGlolw) with code: ```p72z```
+already downloaded and preprocessed in ```data``` folder
+
+also can download the data [STSGCN_data.tar.gz](https://pan.baidu.com/s/1ZPIiOM__r1TRlmY4YGlolw) with code: ```p72z```
 
 ## Reference
 Please cite our paper if you use the model in your own work:
