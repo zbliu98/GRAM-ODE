@@ -49,6 +49,8 @@ def read_data(args):
     mean_value = mean_value.reshape(-1)[0]
     std_value = std_value.reshape(-1)[0]
 
+    
+    #Create DTW graph
     if not os.path.exists(f'data/{filename}_dtw_distance.npy'):
         data_mean = np.mean([data[:, :, 0][24*12*i: 24*12*(i+1)] for i in range(data.shape[0]//(24*12))], axis=0)
         data_mean = data_mean.squeeze().T 
