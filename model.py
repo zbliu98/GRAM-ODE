@@ -106,8 +106,6 @@ class STGCNBlock(nn.Module):
         self.odeg1 = ODEG(num_nodes, type, out_channels[-1], 12, A_hat, time=6)
         self.batch_norm = nn.BatchNorm2d(num_nodes)
 
-        self.weights = nn.Parameter(torch.randn(2, ))
-        self.temporal__ = MultiHeadSelfAttention(12 * 64, 12 * 64, 12 * 64)
 
     def forward(self, X):
         """
@@ -144,7 +142,7 @@ class ODEGCN(nn.Module):
         """
         # self.graph=
         super(ODEGCN, self).__init__()
-        # spatial graph
+        # adjacency graph branch
         self.sp_blocks = nn.ModuleList(
             [nn.Sequential(
                 STGCNBlock(in_channels=num_features, out_channels=[64, 32, 64],
@@ -152,14 +150,14 @@ class ODEGCN(nn.Module):
                 STGCNBlock(in_channels=64, out_channels=[64, 32, 64],
                            num_nodes=num_nodes, A_hat=A_sp_hat, type='sp')) for _ in range(3)
             ])
-        # semantic graph
+        # dtw graph branch
         self.se_blocks = nn.ModuleList([nn.Sequential(
             STGCNBlock(in_channels=num_features, out_channels=[64, 32, 64],
                        num_nodes=num_nodes, A_hat=A_se_hat, type='se'),
             STGCNBlock(in_channels=64, out_channels=[64, 32, 64],
                        num_nodes=num_nodes, A_hat=A_se_hat, type='se')) for _ in range(3)
         ])
-
+        #Attention Module
         self.pred = MultiHeadSelfAttention(12 * 64 * 6, 6 * 64, 12)
 
     def forward(self, x):
