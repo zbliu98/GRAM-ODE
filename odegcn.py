@@ -12,7 +12,7 @@ else:
 
 
 
-
+# Shared temporal weight
 class joint_time(nn.Module):
     def __init__(self, temporal_dim):
         super(joint_time, self).__init__()
@@ -35,7 +35,8 @@ class joint_time(nn.Module):
             att_right = torch.einsum('bnmt, tp->bnmp', x, self.w4)
             all_att = F.sigmoid(torch.matmul(att_left.transpose(2, 3), att_right))
             return torch.matmul(x,all_att)
-
+        
+# Shared spatial weight
 class joint_spatial_sp(nn.Module):
     def __init__(self, adj):
         super(joint_spatial_sp, self).__init__()
@@ -132,28 +133,32 @@ class ODEG(nn.Module):
         self.edge_weight = nn.Parameter(torch.randn((1,)))
         self.weights = nn.Parameter(torch.randn((2,)))
         self.fc_edge=nn.Linear(num_nodes,64)
+        
     def forward(self, x):
         b,n,t,c=x.shape
         res=x
+        
+        #Generate dynamic edges
         edge=torch.mean(x,dim=-1)
         edge=edge.repeat(1,n,1).reshape(b,n,n,t)+edge.repeat(1,n,1).reshape(b,n,n,t).transpose(1,2)
+        
         x_0=x
         x_1 = x
 
-        # global ODE-GNN
+        # global message passing
         self.odeblock_1_1_node.set_x0(x_0)
         x_0 = self.odeblock_1_1_node(x_0).squeeze(0)
 
-        # edge ODE-GNN
+        # edge message passing
         self.odeblock_1_1_edge.set_x0(edge)
         edge = self.odeblock_1_1_edge(edge).squeeze(0)
 
         x_3_4=[]
 
-        #sample
+        #Attention Module
         x_1 = self.att_12_4(x_1.reshape(b,n,t*64)).reshape(b,n,4,64)
 
-        # local ODE-GNN
+        # local message passing
         for i in range(4):
             x = x_1[..., i,:].unsqueeze(-2)
             exec(f'self.odeblock_3_{i}_node.set_x0(x)')
@@ -163,20 +168,20 @@ class ODEG(nn.Module):
 
         x_1 = torch.stack(x_3_4, dim=-2).reshape(-1, self.num_nodes, 12, 64)
 
-        # constraint
+        # Message Filter
         x_1= torch.where(x_0+self.clip[0]-x_1 < 0, x_0+self.clip[0], x_1)
         x_1= torch.where((x_0-self.clip[0] - x_1) > 0, x_0-self.clip[0], x_1)
         x_g=self.fc_final1(x_1.reshape(-1,64)).reshape(-1,self.num_nodes,12,64)
         x_l=self.fc_final2(x_0)
         x_e=self.fc_edge(edge.permute(0,2,3,1))
 
-        #agg
+        #Aggregation Layer
         out_global = x_g * torch.sigmoid(x_l) + x_g * torch.sigmoid(x_e) + \
                      x_l * torch.sigmoid(x_e) + x_l * torch.sigmoid(x_g) + \
                      x_e * torch.sigmoid(x_l) + x_e * torch.sigmoid(x_g)
         z = out_global / 6
 
-        #res
+        #Update Layer
         z = self.weights[0] * F.sigmoid(self.fc_final3(res)) + self.weights[1] * z
         z= F.relu(z)
         return z
