@@ -28,7 +28,7 @@ PEMS03, PEMS04, PEMS07, and PEMS08 already downloaded and preprocessed in ```dat
 PEMS-BAY and METR-LA can be downloaded here [this repo](https://github.com/chnsh/DCRNN_PyTorch/tree/pytorch_scratch/data/sensor_graph) and [this Google Drive](https://drive.google.com/drive/folders/10FOTa6HXPqX8Pf5WRoRwcFnW9BrNZEIX) 
 
 ## Reference
-Please cite our paper if you use the model in your own work:
+If you find the paper or the repo useful, please cite it with
 ```
 @article{
 liu2023graphbased,
